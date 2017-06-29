@@ -1,0 +1,21 @@
+<h2>SIGN UP</h2>
+
+<p> Sign up to this amazing app 👌</p>
+
+<% if(typeof messageForDumbUsers === 'string') { %>
+  <p class="error-message"> <%= messageForDumbUsers %> </p>
+<% } %>
+
+<form id="form" action="/signup" method="post">
+
+  <label for="full-name-input">Your Name</label>
+  <input id="full-name-input" type="text" name="signupFullName" placeholder="Alan Turing"><br>
+
+  <label for="username-input">User Name</label>
+  <input id="username-input" type="text" name="signupUsername" placeholder="Turingator"><br>
+
+  <label for="password-input"> Password </label>
+  <input id="username-input" type="password" name="signupPassword" placeholder="*********"><br>
+
+  <button>SIGN UP</button>
+</form>
