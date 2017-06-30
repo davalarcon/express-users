@@ -6,7 +6,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
+//for log in purposes ---------------- 👁
+const session      = require('express-session');
+const passport     = require('passport');
+//----------------------------------------
 
+//Run all the code inside "config/passport-config.js"
+require('./config/passport-config.js');
 
 mongoose.connect('mongodb://localhost/express-users');
 
@@ -27,6 +33,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+app.use(layouts);
+//------------------------
+app.use(session({
+  // the value of 'secret' doesn't matter except it has to be different for every app.js
+  secret: 'jflkajdlkfjasldjsjfa',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+//PASSPORT MIDDLEWARES 🚨🚨🚨🚨🚨🚨
+//these need to come after "app.use(session(...))"🚨🚨🚨
+app.use(passport.initialize());
+app.use(passport.session());
+//---------------------------------
+
 
 //------ROUTES HERE 👇👇👇 ----------------------------
 
